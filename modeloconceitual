@@ -1,0 +1,25 @@
+@startuml
+class Usuario {
+  - nome: String
+  - cpf: String
+  - email: String
+}
+
+class Moderador {
+  - nome: String
+  - cpf: String
+  - email: String
+}
+
+class Solicitacao {
+  - descricao: String
+  - localizacao: String
+  - fotos: List<String>
+  - nomeModerador: String
+  - nomeUsuario: String
+}
+
+Usuario --|> Solicitacao
+Moderador --|> Solicitacao
+
+@enduml
