@@ -19,7 +19,8 @@ class Solicitacao {
   - nomeUsuario: String
 }
 
-Usuario --|> Solicitacao
-Moderador --|> Solicitacao
+Moderador --|> Usuario : Gerencia
+Usuario --|> Solicitacao : Cadastra
+Moderador --|> Solicitacao : AtualizaStatus
 
 @enduml
