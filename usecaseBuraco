@@ -1,25 +1,34 @@
 @startuml
-left to right direction
+top to bottom direction
 skinparam packageStyle rectangle
+skinparam actorStyle awesome
+actor User as "Usuário"
 
-actor Usuario as "Usuário"
-actor Aplicativo as "Aplicativo CIDADE ONLINE"
-
-rectangle "Caso de Uso" {
-  Usuario --> (Abrir Aplicativo)
-  Usuario --> (Tirar Foto do Problema)
-  Usuario --> (Enviar Foto)
-  Usuario --> (Visualizar Resposta)
-
-  (Abrir Aplicativo) --> (Direcionar para Aba de Rede Social)
-  (Tirar Foto do Problema) --> (Enviar Foto)
-  (Enviar Foto) --> (Registrar Problema de Infraestrutura)
-  (Visualizar Resposta) --> (Criar Publicação)
-  (Visualizar Resposta) --> (Anexar à Publicação Existente)
-
-  (Registrar Problema de Infraestrutura) --> (Encaminhar para Órgão Responsável)
-
-  (Criar Publicação) --> (Anexar Foto)
+package "Aplicativo Cidade Online" as sistema #white;line:black;line.bold;text:black;{
+ 
+   usecase "Observar Problema" as Obser
+   usecase "Entrar No App" as Ent
+   usecase "Acessar a aba de rede social" as Acess
+   usecase "Tirar foto do Problema" as Foto
+   usecase "Anexar foto a publicação" as Anex
+   usecase "Postar Publicação do Problema" as Post
+   usecase "Anexar endereço" as Aend
+   usecase "Verificar Publicação" as Pub
+   actor Mod as "Moderador"
 }
-
+Obser .r. Ent #line:red;text:blue : <extend>
+Ent .. Acess #line:red;text:blue : <extend>
+Acess .. Foto #line:red;text:blue : <extend>
+Foto .. Anex #line:red;text:blue : <extend>
+Anex .. Aend #line:red;text:blue : <extend>
+Aend .. Post #line:red;text:blue : <extend>
+Post .. Pub #line:red;text:blue : <extend>
+User -l-> (Obser)
+User --> (Ent)
+User --> (Acess)
+User --> (Foto)
+User --> (Anex)
+User -->(Post)
+User --> (Aend)
+Mod -right-> (Pub)
 @enduml
